@@ -66,7 +66,7 @@ asynchronous task queues for elastic distributed computing.</p>
 <span>  <span class="va">...</span>,</span>
 <span>  queue <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"future.redis.queue"</span>, <span class="st">"{{session}}"</span><span class="op">)</span>,</span>
 <span>  config <span class="op">=</span> <span class="fu">redis_config</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  output_queue <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  output_queue <span class="op">=</span> <span class="cn">NA_character_</span>,</span>
 <span>  max_retries <span class="op">=</span> <span class="fl">3L</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -144,7 +144,7 @@ to the task queue in the event of failure.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="startLocalWorkers.html">stopLocalWorkers</a></span><span class="op">(</span><span class="va">workers</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.14098</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.141656</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

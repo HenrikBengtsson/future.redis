@@ -69,9 +69,9 @@ queues for elastic distributed computing.</p>
 <span class="r-in"><span><span class="co">## The example assumes that a Redis server is running on the local host</span></span></span>
 <span class="r-in"><span><span class="co">## and standard port.</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">redis</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="startLocalWorkers.html">startLocalWorkers</a></span><span class="op">(</span><span class="fl">2</span>, linger<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">workers</span> <span class="op">&lt;-</span> <span class="fu"><a href="startLocalWorkers.html">startLocalWorkers</a></span><span class="op">(</span><span class="fl">2</span>, linger <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/demo.html" class="external-link">demo</a></span><span class="op">(</span><span class="st">"mandelbrot"</span>, package <span class="op">=</span> <span class="st">"future"</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="removeQ.html">removeQ</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="startLocalWorkers.html">stopLocalWorkers</a></span><span class="op">(</span><span class="va">workers</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -189,11 +189,11 @@ queues for elastic distributed computing.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Plotting tile #2 of 9 ...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculating tile #2 of 9 ...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  done</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Plotting tile #3 of 9 ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Calculating tile #3 of 9 ...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>  done</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Plotting tile #4 of 9 ...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculating tile #4 of 9 ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  done</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Plotting tile #3 of 9 ...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Calculating tile #3 of 9 ...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>  done</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Plotting tile #5 of 9 ...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Calculating tile #5 of 9 ...</span>
