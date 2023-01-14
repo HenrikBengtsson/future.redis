@@ -66,7 +66,7 @@ communication or other error occurs; after which the worker exits (quits R).</p>
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">worker</span><span class="op">(</span></span>
-<span>  queue <span class="op">=</span> <span class="st">"RJOBS"</span>,</span>
+<span>  queue <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"future.redis.queue"</span>, <span class="st">"{{session}}"</span><span class="op">)</span>,</span>
 <span>  linger <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>  config <span class="op">=</span> <span class="fu">redis_config</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  iter <span class="op">=</span> <span class="cn">Inf</span>,</span>
