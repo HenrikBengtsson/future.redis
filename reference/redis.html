@@ -18,7 +18,7 @@ asynchronous task queues for elastic distributed computing."><!-- mathjax --><sc
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">future.redis</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1-9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1-9001</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ identified.</p></dd>
 
 
 <dt>queue</dt>
-<dd><p>Redis key name of the task queue (Redis list).</p></dd>
+<dd><p>A Redis key name of the task queue, or a</p></dd>
 
 
 <dt>config</dt>
@@ -122,16 +122,14 @@ to the task queue in the event of failure.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu">redux</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/redux/man/hiredis.html" class="external-link">redis_available</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co">## The example assumes that a Redis server is running on the local host</span></span></span>
-<span class="r-in"><span><span class="co">## and standard port.</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## The example assumes that a Redis server is running</span></span></span>
+<span class="r-in"><span><span class="co">## on the local host and the standard Redis port (6379)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu">redux</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/redux/man/hiredis.html" class="external-link">redis_available</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Register the redis plan on a specified task queue:</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">redis</span>, queue <span class="op">=</span> <span class="st">"R jobs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Start two local R worker processes running in the background</span></span></span>
+<span class="r-in"><span><span class="va">workers</span> <span class="op">&lt;-</span> <span class="fu"><a href="startLocalWorkers.html">startLocalWorkers</a></span><span class="op">(</span><span class="fl">2L</span>, linger <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Start some local R worker processes:</span></span></span>
-<span class="r-in"><span><span class="co">## FIXME: Make Redis queue unique to avoid wreaking havoc</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="startLocalWorkers.html">startLocalWorkers</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">2</span>, queue<span class="op">=</span><span class="st">"R jobs"</span>, linger<span class="op">=</span><span class="fl">1.0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">redis</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># A function that returns a future, note that N uses lexical scoping...</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> \<span class="op">(</span><span class="op">)</span> <span class="fu"><a href="https://future.futureverse.org/reference/future.html" class="external-link">future</a></span><span class="op">(</span><span class="op">{</span><span class="fl">4</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">^</span> <span class="fl">2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">/</span> <span class="va">N</span><span class="op">}</span>, seed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
@@ -142,11 +140,11 @@ to the task queue in the event of failure.</p></dd>
 <span class="r-in"><span><span class="va">pi_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Reduce</a></span><span class="op">(</span><span class="va">sum</span>, <span class="fu"><a href="https://rdrr.io/r/base/funprog.html" class="external-link">Map</a></span><span class="op">(</span><span class="va">value</span>, <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="va">M</span>, <span class="fu">f</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="va">M</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">pi_est</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Clean up</span></span></span>
-<span class="r-in"><span><span class="co">## FIXME: Make Redis queue unique to avoid wreaking havoc</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="removeQ.html">removeQ</a></span><span class="op">(</span><span class="st">"R jobs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Make sure to stop the workers</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="startLocalWorkers.html">stopLocalWorkers</a></span><span class="op">(</span><span class="va">workers</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.14169</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.14098</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
