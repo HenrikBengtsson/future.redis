@@ -92,7 +92,8 @@ identified.</p></dd>
 
 
 <dt>queue</dt>
-<dd><p>A Redis key name of the task queue, or a</p></dd>
+<dd><p>A Redis key name of the task queue, or a
+<code>RedisWorkerConfiguration</code> object as returned by <code><a href="startLocalWorkers.html">startLocalWorkers()</a></code>.</p></dd>
 
 
 <dt>config</dt>
@@ -144,8 +145,7 @@ to the task queue in the event of failure.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="startLocalWorkers.html">stopLocalWorkers</a></span><span class="op">(</span><span class="va">workers</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.141656</span>
-<span class="r-in"><span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.141237</span>
 </code></pre></div>
     </div>
   </div>
